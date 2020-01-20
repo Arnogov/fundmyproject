@@ -1,14 +1,10 @@
 // Charger bootstrap
+@import "~bootswatch/dist/superhero/variables";
 @import "~bootstrap/scss/bootstrap";
 // import bootswatch (superhero)
 @import "~bootswatch/dist/superhero/bootswatch";
 // import font awesome 4
 @import "~font-awesome/scss/font-awesome";
-
-
-body {
-    background-color: lightgray;
-}
 
 body {
     padding-top: 100px;
