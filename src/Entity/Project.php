@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
+ *  @ORM\HasLifecycleCallbacks
  */
 class Project
 {
@@ -215,4 +216,13 @@ class Project
 
         return $this;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setCreatedAt(new \DateTime());
+    }
 }
+
