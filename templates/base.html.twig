@@ -29,10 +29,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ path('category_index')}}" id="download">Catégories
                             <span class="caret"></span></a>
                         <div class="dropdown-menu" aria-labelledby="download">
-                            <a class="dropdown-item" href="category.html">Sport</a>
-                            <a class="dropdown-item" href="category.html">Musique</a>
-                            <a class="dropdown-item" href="category.html">Film</a>
-                            <a class="dropdown-item" href="category.html">Jeux</a>
+                            {{ render(controller('App\\Controller\\DefaultController::headerCategories')) }}
                         </div>
                     </li>
                     {% if app.user %}
