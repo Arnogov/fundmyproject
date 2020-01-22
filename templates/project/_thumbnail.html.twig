@@ -1,0 +1,11 @@
+<article class="project-thumbnail">
+    <img src="{{asset('uploads/' ~ project.photo) }}">
+    <div class="project-details">
+        <h4>{{ project.name }}</h4>
+
+        <a href="{{ path('project_show', {'id': project.id}) }}" class="btn btn-dark">
+            <i class="fa fa-eye"></i>
+            Voir plus
+        </a>
+    </div>
+</article>
