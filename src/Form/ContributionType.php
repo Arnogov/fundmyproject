@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Contribution;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,9 +13,15 @@ class ContributionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('amount')
-            ->add('project')
-            ->add('user')
+            ->add('amount', TextType::class, [
+                'label'=>'Montant'
+            ])
+            ->add('project', TextType::class,[
+                'label'=>'Projet'
+            ])
+            ->add('user', TextType::class, [
+                'label' => 'Utilisateur',
+            ])
         ;
     }
 
@@ -25,5 +32,9 @@ class ContributionType extends AbstractType
         ]);
     }
 
+    public function __toString()
+    {
+        return $this->getAmount();
+    }
 
 }
