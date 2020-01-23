@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Project;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,15 +14,19 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('image')
-            ->add('excerpt')
-            ->add('description')
-            ->add('goal')
-            ->add('createdAt')
-            ->add('user')
+            ->add('name', TextType::class, [
+                'label' => 'Titre',
+            ])
             ->add('categories')
-        ;
+            ->add('excerpt')
+            ->add('goal', TextType::class, [
+                'label' => 'Objectif',
+            ])
+            ->add('image', FileType::class, ['label' => 'Image'])
+            ->add('description')
+            ->add('user', TextType::class, [
+                'label' => 'Utilisateur',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

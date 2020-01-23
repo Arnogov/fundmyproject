@@ -24,7 +24,7 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
 
         $lesyeuxdanslebus = new Project();
         $lesyeuxdanslebus->setName("Les yeux dans le bus");
-        $lesyeuxdanslebus->setImage("placeholder.jpg");
+        $lesyeuxdanslebus->setImage("placeholder.png");
         $lesyeuxdanslebus->setExcerpt("Revivez la grande épopée de l'équipe de France de football lors du mondial de football 2010.");
         $lesyeuxdanslebus->setDescription("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
         $lesyeuxdanslebus->setGoal(5500.00);

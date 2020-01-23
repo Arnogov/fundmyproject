@@ -24,4 +24,6 @@ class ContributionType extends AbstractType
             'data_class' => Contribution::class,
         ]);
     }
+
+
 }

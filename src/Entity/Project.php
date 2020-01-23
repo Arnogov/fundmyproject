@@ -224,5 +224,10 @@ class Project
     {
         $this->setCreatedAt(new \DateTime());
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
 
