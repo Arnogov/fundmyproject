@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
- *  @ORM\HasLifecycleCallbacks
+ * @ORM\HasLifecycleCallbacks
  */
 class Project
 {
@@ -45,11 +45,6 @@ class Project
     private $goal;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="projects")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -64,6 +59,11 @@ class Project
      * @ORM\OneToMany(targetEntity="App\Entity\Contribution", mappedBy="project", orphanRemoval=true)
      */
     private $contributions;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     public function __construct()
     {
@@ -91,6 +91,11 @@ class Project
     public function getImage(): ?string
     {
         return $this->image;
+    }
+
+    public function getImageOrPlaceholder(): string
+    {
+        return empty($this->getImage()) ? "images/placeholder.png" : "uploads/" . $this->getImage();
     }
 
     public function setImage(?string $image): self
@@ -132,18 +137,6 @@ class Project
     public function setGoal(string $goal): self
     {
         $this->goal = $goal;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -194,6 +187,19 @@ class Project
         return $this->contributions;
     }
 
+    public function getAmountContributions(): float
+    {
+        $totalAmount = array_reduce($this->getContributions()->toArray(), function ($total, $contribution) {
+            return $total + $contribution->getAmount();
+        });
+        return is_null($totalAmount) ? 0 : $totalAmount;
+    }
+
+    public function getAmountContributionsPercentage(): float
+    {
+        return ($this->getAmountContributions() * 100) / $this->getGoal();
+    }
+
     public function addContribution(Contribution $contribution): self
     {
         if (!$this->contributions->contains($contribution)) {
@@ -217,6 +223,18 @@ class Project
         return $this;
     }
 
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
     /**
      * @ORM\PrePersist
      */
@@ -229,5 +247,5 @@ class Project
     {
         return $this->getName();
     }
-}
 
+}

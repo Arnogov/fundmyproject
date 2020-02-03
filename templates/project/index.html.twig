@@ -3,14 +3,13 @@
 {% block title %}Project index{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Bienvenue sur Fund My Project</h1>
-        <p>Aidez-nous à créer de nouveaux projets chaque jour !</p>
-        <div class="row">
-            {% for project in projects %}
-                {% include'project/_thumbnail.html.twig' with {'project': project} %}
-            {% endfor %}
-        </div>
+    <h1>Découvrez l'ensemble de nos projets</h1>
+    <div class="row">
+        {% for project in projects %}
+            <article class="col-4">
+                {% include 'project/_thumbnail.html.twig' with {'project': project} only %}
+            </article>
+        {% endfor %}
     </div>
 
     <nav>

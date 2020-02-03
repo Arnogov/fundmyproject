@@ -32,9 +32,4 @@ class ContributionType extends AbstractType
         ]);
     }
 
-    public function __toString()
-    {
-        return $this->getAmount();
-    }
-
 }

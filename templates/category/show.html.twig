@@ -4,7 +4,7 @@
     <main class="page-content">
         <div class="container">
             <h1>Catégorie : {{ category.name }}</h1>
-            <p>Il y a 3 projets dans cette catégorie :</p>
+            <p>Il y a {{ category.projects|length }} projets dans cette catégorie :</p>
             <div class="row">
                 {% for project in category.projects %}
                     <article class="col-4">
