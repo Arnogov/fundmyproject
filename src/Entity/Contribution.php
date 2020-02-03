@@ -100,6 +100,7 @@ class Contribution
         $this->setCreatedAt(new \DateTime());
     }
 
+
     public function __toString()
     {
         return $this ->getAmount();
