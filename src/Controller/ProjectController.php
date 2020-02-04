@@ -33,6 +33,7 @@ class ProjectController extends AbstractController
     public function new(Request $request): Response
     {
         $project = new Project();
+        $project->setUser($this->getUser());
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 

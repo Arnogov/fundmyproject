@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Project;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,16 +19,19 @@ class ProjectType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Titre',
             ])
-            ->add('categories')
+            ->add('categories', EntityType::class, [
+                'class' => Category::class,
+                'expanded' => true,
+                'multiple' => true,
+            ])
             ->add('excerpt')
             ->add('goal', TextType::class, [
                 'label' => 'Objectif',
             ])
+        ->add('goal', MoneyType::class)
             ->add('image', FileType::class, ['label' => 'Image'])
             ->add('description')
-            ->add('user', TextType::class, [
-                'label' => 'Utilisateur',
-            ]);
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

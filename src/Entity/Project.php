@@ -59,7 +59,6 @@ class Project
      * @ORM\OneToMany(targetEntity="App\Entity\Contribution", mappedBy="project", orphanRemoval=true)
      * @ORM\OrderBy({"createdAt" = "DESC"})
      */
-
     private $contributions;
 
     /**
